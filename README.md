@@ -17,7 +17,7 @@ Want to contribute to this extension? The quickest way is to open a [pull reques
 
 Support
 ---
-If you encounter any problems or bugs, please open an issue on [GitHub](https://github.com/magepal/magento2-googletagmanager/issues).
+If you encounter any problems or bugs, please open an issue on [GitHub](https://github.com/FYBRomania/module-notification-bar/issues).
 
 Need help to set up or want to customize our extension to meet your business needs? Please email office@fyb.ro and if we like your idea we will add this feature.
 
