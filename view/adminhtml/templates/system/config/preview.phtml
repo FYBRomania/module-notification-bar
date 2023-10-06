@@ -1,0 +1,63 @@
+<?php
+/**
+ * @author FYB Romania
+ * @copyright Copyright (c) FYB Romania (https://fyb.ro)
+ * @package Notification Bar for Magento 2
+ */
+/** @var $block \Fyb\NotificationBar\Block\Adminhtml\System\Config\PreviewPromo */
+?>
+<button id="preview-promo-box" type="button">Preview</button>
+<div class="preview-container" style="margin-top: 20px;" id="preview-container">
+</div>
+
+<script>
+    require(['jquery'], function($){
+        function prepareFrame() {
+            var idIframe = 'preview-iframe';
+            if ($('#' + idIframe).length) {
+                $('#' + idIframe).remove();
+            }
+
+            var iframe = document.createElement("iframe");
+            var htmlcode = '<div class="sticky-notification-bar" ' +
+                'style="background-color: ' + $('#notification_bar_general_background_color').val() + ';' +
+                'color: ' + $('#notification_bar_general_text_color').val() + ';" >' +
+                '<div class="content">' + $('#notification_bar_general_content').val() + '</div>' +
+            '</div>';
+
+            iframe.id = idIframe;
+            document.getElementById("preview-container").appendChild(iframe);
+
+            iframe.setAttribute("style","width:100%;");
+            iframe.contentWindow.document.open();
+            iframe.contentWindow.document.write(htmlcode);
+            iframe.contentWindow.document.close();
+
+            let head = $('#' + idIframe).contents().find("head");
+            let css = '<style>' + $('#notification_bar_general_custom_css').val() +
+                <?= json_encode($block->getCssAdditional()) ?> +
+                '.sticky-notification-bar .content { padding: 0 !important; }'
+                '</style>';
+            $(head).append(css);
+        }
+
+        $('#preview-promo-box').on('click', function () {
+            prepareFrame();
+        });
+
+        let timer;
+        const waitTime = 600;
+
+        $('#notification_bar_general_custom_css, #notification_bar_general_background_color,' +
+            '#notification_bar_general_text_color, #notification_bar_general_content'
+        ).on("change", function() {
+            clearTimeout(timer);
+
+            timer = setTimeout(() => {
+                if ($('#preview-iframe').length) {
+                    prepareFrame();
+                }
+            }, waitTime);
+        });
+    })
+</script>

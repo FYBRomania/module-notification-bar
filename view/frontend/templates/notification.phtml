@@ -1,0 +1,28 @@
+<?php
+/**
+ * @author FYB Romania
+ * @copyright Copyright (c) FYB Romania (https://fyb.ro)
+ * @package Notification Bar for Magento 2
+ */
+/** @var $block \Fyb\NotificationBar\Block\Notification */
+?>
+<?php if ($block->needDisplay()): ?>
+    <div class="sticky-notification-bar"
+         style="background-color: <?php echo $this->getConfig('background_color') ?>;
+                color: <?php echo $this->getConfig('text_color') ?>;"
+    >
+        <div class="content"><?php echo $block->getConfig('content') ?></div>
+    </div>
+    <style>
+        <?php echo $block->getConfig("custom_css")?>
+    </style>
+    <?php if ($block->getConfig('is_sticky')): ?>
+        <script>
+            window.addEventListener("load", function () {
+                var notificationBar = document.getElementsByClassName("sticky-notification-bar")[0];
+                notificationBar.style.position = "fixed";
+                document.getElementsByClassName("page-header")[0].style.marginTop = notificationBar.offsetHeight + "px";
+            });
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
