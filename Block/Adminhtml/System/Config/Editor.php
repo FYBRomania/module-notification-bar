@@ -51,7 +51,7 @@ class Editor extends Field
 
         $tinyMce = $config->getData('tinymce4');
         $tinyMce['toolbar'] = 'styleselect | fontsizeselect | lineheightselect | bold italic underline | link';
-        $tinyMce['plugins'] = 'advlist autolink lists link charmap media noneditable table contextmenu paste code help table textcolor image colorpicker lineheight';
+        $tinyMce['plugins'] = 'advlist autolink lists link charmap media noneditable table contextmenu paste code help table textcolor image colorpicker lineheight autoresize';
         $tinyMce['menubar'] = '';
         $config->setData('tinymce4', $tinyMce);
 

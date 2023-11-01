@@ -12,7 +12,10 @@
             <general>
                 <is_sticky>1</is_sticky>
                 <text_color>#ffffff</text_color>
+                <min_height>40</min_height>
                 <background_color>#17b527</background_color>
+                <pages_exclude><![CDATA[checkout,
+onepage]]></pages_exclude>
             </general>
         </notification_bar>
     </default>

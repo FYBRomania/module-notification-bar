@@ -5,13 +5,14 @@
  * @package Notification Bar for Magento 2
  */
 /** @var $block \Fyb\NotificationBar\Block\Notification */
+$minHeight = (int)$block->getConfig('min_height') > 0 ? (int)$block->getConfig('min_height'): 40;
 ?>
 <?php if ($block->needDisplay()): ?>
     <div class="sticky-notification-bar"
          style="background-color: <?php echo $this->getConfig('background_color') ?>;
                 color: <?php echo $this->getConfig('text_color') ?>;"
     >
-        <div class="content"><?php echo $block->getConfig('content') ?></div>
+        <div class="content" style="min-height: <?= $minHeight ?>px;"><?php echo $block->getConfig('content') ?></div>
     </div>
     <style>
         <?php echo $block->getConfig("custom_css")?>

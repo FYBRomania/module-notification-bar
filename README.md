@@ -1,6 +1,6 @@
 <a href="https://fyb.ro/" title="Magento2 Custom Developer" ><img src="http://fyb.ro/wp-content/uploads/2022/01/fyb-logo-retina-white.png" width="100" align="right" alt="MagePal Adobe Commerce Extensions" /></a>
 
-# Sticky Notification Bar - Magento 2 Extension
+# Hello Bar - Top Bar Promotions - Magento 2 Extension
 <img src="https://img.shields.io/badge/magento-2.4-brightgreen.svg?logo=magento&longCache=true" alt="Supported Magento Versions" />
 <a href="https://opensource.org/licenses/OSL-3.0" target="_blank"><img src="https://img.shields.io/badge/License-OSL%203.0-blue.svg" /></a>
 

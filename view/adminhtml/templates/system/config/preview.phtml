@@ -6,7 +6,7 @@
  */
 /** @var $block \Fyb\NotificationBar\Block\Adminhtml\System\Config\PreviewPromo */
 ?>
-<button id="preview-promo-box" type="button">Preview</button>
+<button id="preview-promo-box" type="button" style="margin-top: 15px; width: 150px;">Preview</button>
 <div class="preview-container" style="margin-top: 20px;" id="preview-container">
 </div>
 
@@ -22,7 +22,8 @@
             var htmlcode = '<div class="sticky-notification-bar" ' +
                 'style="background-color: ' + $('#notification_bar_general_background_color').val() + ';' +
                 'color: ' + $('#notification_bar_general_text_color').val() + ';" >' +
-                '<div class="content">' + $('#notification_bar_general_content').val() + '</div>' +
+                '<div class="content" style="min-height: ' + $('#notification_bar_general_min_height').val()  + 'px;">' +
+                $('#notification_bar_general_content').val() + '</div>' +
             '</div>';
 
             iframe.id = idIframe;
@@ -34,9 +35,11 @@
             iframe.contentWindow.document.close();
 
             let head = $('#' + idIframe).contents().find("head");
-            let css = '<style>' + $('#notification_bar_general_custom_css').val() +
+            let css = '<style>' +
                 <?= json_encode($block->getCssAdditional()) ?> +
-                '.sticky-notification-bar .content { padding: 0 !important; }'
+                '.sticky-notification-bar .content { padding: 0 !important; }' +
+                '.sticky-notification-bar .content p { margin: 0 !important; }' +
+                $('#notification_bar_general_custom_css').val() +
                 '</style>';
             $(head).append(css);
         }
@@ -49,7 +52,8 @@
         const waitTime = 600;
 
         $('#notification_bar_general_custom_css, #notification_bar_general_background_color,' +
-            '#notification_bar_general_text_color, #notification_bar_general_content'
+            '#notification_bar_general_text_color, #notification_bar_general_content, ' +
+            '#notification_bar_general_min_height'
         ).on("change", function() {
             clearTimeout(timer);
 

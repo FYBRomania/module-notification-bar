@@ -7,6 +7,7 @@
 
 namespace Fyb\NotificationBar\Block;
 
+use Laminas\Uri\Http as HttpUri;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\ScopeInterface;
 
@@ -35,7 +36,26 @@ class Notification extends Template
         $dateFrom = $this->getConfig('from_date');
         $dateTo = $this->getConfig('to_date');
 
-        return $this->getConfig('enabled') && (!$dateFrom || time() >= strtotime($dateFrom))
+        /** @var HttpUri $page */
+        $page = $this->getRequest()->getUri();
+        $isExcludedPage = false;
+        if ($page && trim($page->getPath(), '/')) {
+            $uri = trim($page->getPath(), '/');
+            $excludedUrls = array_map('trim',
+                array_filter(explode(',', $this->getConfig('pages_exclude')))
+            );
+
+            foreach ($excludedUrls as $excludedUrl) {
+                $excludedUrl = str_replace('/', '\/', trim($excludedUrl, '/'));
+                if ($excludedUrl && preg_match('/' . $excludedUrl . '/i', $uri)) {
+                    $isExcludedPage = true;
+                    break;
+                }
+            }
+        }
+
+        return $this->getConfig('enabled') && !$isExcludedPage
+            && (!$dateFrom || time() >= strtotime($dateFrom))
             && (!$dateTo || time() <= strtotime($dateTo));
     }
 }
