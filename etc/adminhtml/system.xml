@@ -47,7 +47,7 @@
                     <comment>Main block has style .sticky-notification-bar.</comment>
                 </field>
                 <field id="pages_exclude" translate="label" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Pages For Exclude</label>
+                    <label>Pages to Exclude</label>
                     <comment><![CDATA[Enter url paths separated by ","(comma) if you want the notification to be hidden on some pages. Also, it's supports regular expressions. Ex. checkout, customer/account, customer/*]]></comment>
                 </field>
                 <field id="from_date" translate="label" type="date" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">

@@ -49,11 +49,19 @@ class Editor extends Field
             ->setData('no_display', false)
             ->setData('use_container', false);
 
-        $tinyMce = $config->getData('tinymce4');
-        $tinyMce['toolbar'] = 'styleselect | fontsizeselect | lineheightselect | bold italic underline | link';
-        $tinyMce['plugins'] = 'advlist autolink lists link charmap media noneditable table contextmenu paste code help table textcolor image colorpicker lineheight autoresize';
-        $tinyMce['menubar'] = '';
-        $config->setData('tinymce4', $tinyMce);
+        if ($tinyMce = $config->getData('tinymce4')) {
+            $tinyMce['toolbar'] = 'styleselect | fontsizeselect | bold italic underline | link charmap';
+            $tinyMce['plugins'] = 'advlist autolink link charmap noneditable contextmenu paste code help autoresize';
+            $tinyMce['menubar'] = '';
+            $config->setData('tinymce4', $tinyMce);
+        } else {
+            $tinyMce = $config->getData('tinymce');
+
+            $tinyMce['toolbar'] = 'styleselect | fontsizeselect | bold italic underline | link charmap';
+            $tinyMce['plugins'] = 'advlist autolink link charmap noneditable paste code help autoresize';
+            $tinyMce['menubar'] = '';
+            $config->setData('tinymce', $tinyMce);
+        }
 
         $element->setConfig($config);
 
